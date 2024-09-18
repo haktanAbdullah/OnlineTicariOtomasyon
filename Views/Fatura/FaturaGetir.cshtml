@@ -1,0 +1,40 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Sınıflar.Faturalar
+
+@{
+    ViewBag.Title = "FaturaGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Fatura Güncelleme Sayfası</h2>
+<br />
+
+@using (Html.BeginForm("FaturaGuncelle", "Fatura", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.id)
+
+    <label for="ad">Fatura Seri No</label>
+    @Html.TextBoxFor(x => x.seriNo, new { @class = "form-control" })
+    <br />
+    <label for="marka">Fatura Sıra No</label>
+    @Html.TextBoxFor(x => x.sıraNo, new { @class = "form-control" })
+    <br />
+    <label for="stok">Vergi Dairesi</label>
+    @Html.TextBoxFor(x => x.vergiDairesi, new { @class = "form-control" })
+    <br />
+    <label for="alisFiyat">Tarih</label>
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    <br />
+    <label for="satisFiyat">Fatura Saat</label>
+    @Html.TextBoxFor(x => x.saat, new { @class = "form-control" })
+    <br />
+    <label for="kategori">Teslim Eden:</label>
+    @Html.TextBoxFor(x => x.teslimEden, new { @class = "form-control" })
+    <br />
+    <label for="kategori">Teslim Alan:</label>
+    @Html.TextBoxFor(x => x.teslimAlan, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-warning">Güncelle</button>
+}
+

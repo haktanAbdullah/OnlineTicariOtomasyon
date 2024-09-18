@@ -1,0 +1,100 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Sınıflar
+
+@model  List<Departman>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div style="overflow-x:auto">
+    <table id="tbl1" class="table table-bordered" style="margin-top:20px">
+        <thead>
+            <tr>
+                <th>Departman Adı</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+                <th>Detaylar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var k in Model)
+            {
+                <tr>
+                    <td>@k.ad</td>
+                    <td><a href="#" data-id="@k.id" class="btn btn-danger sil-btn">Sil</a></td>
+                    <td><a href="/Departman/DepartmanGetir/@k.id" class="btn btn-warning">Güncelle</a></td>
+                    <td><a href="/Departman/DepartmanDetay/@k.id" class="btn btn-default" style="background-color:lightcoral;color:white">Detaylar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa })
+    , new PagedListRenderOptions
+    {
+        LiElementClasses = new List<string>
+        { "page-link"}
+    })*@
+</div>
+
+<br />
+<a href="/Departman/DepartmanEkle/" class="btn btn-info">Departman Ekle</a>
+
+<script>
+    $(document).ready(function () {
+        $(".sil-btn").click(function (e) {
+            e.preventDefault();
+            var id = $(this).data("id");
+            swal({
+                title: "Emin misiniz?",
+                text: "Bu departmanı sildikten sonra geri alamayacaksınız!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = "/Departman/DepartmanSil/" + id;
+                } else {
+                    swal("Departman silinmedi...");
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // TempData'dan başarı mesajını al ve SweetAlert ile göster
+        var successMessage = '@(TempData["SuccessMessage"] ?? "")';
+        if (successMessage) {
+            swal({
+                title: "İşlem başarılı!",
+                text: successMessage,
+                icon: "success",
+                button: "Tamam",
+            });
+        }
+    });
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<script>
+    $('#tbl1').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>

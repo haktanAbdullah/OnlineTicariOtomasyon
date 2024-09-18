@@ -1,0 +1,62 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Sınıflar.Cariler
+
+@{
+    ViewBag.Title = "YeniCari";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Cari</h2>
+<br />
+
+@using (Html.BeginForm("CariEkle", "Cari", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.ad)
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Cari Adını giriniz:" })
+        @Html.ValidationMessageFor(x => x.ad, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.soyad)
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Cari Soyadını giriniz:" })
+        @Html.ValidationMessageFor(x => x.soyad, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.sehir)
+        @Html.DropDownListFor(x => x.sehir, new SelectList(ViewBag.sehirler as List<string>), "Şehir seçiniz", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.sehir, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.mail)
+        @Html.TextBoxFor(x => x.mail, new { type = "email", @class = "form-control", placeholder = "mail adresini giriniz:" })
+        @Html.ValidationMessageFor(x => x.mail, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.meslek)
+        @Html.TextBoxFor(x => x.meslek, new { @class = "form-control", placeholder = "Meslek giriniz:" })
+        @Html.ValidationMessageFor(x => x.meslek, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.telefonNo)
+        @Html.TextBoxFor(x => x.telefonNo, new { type = "tel", @class = "form-control", placeholder = "Telefon giriniz:" })
+        @Html.ValidationMessageFor(x => x.telefonNo, "", new { @style = "color:red" })
+        <br />
+        <button type="submit" class="btn btn-info">Kaydet</button>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        // TempData'dan başarı mesajını al ve SweetAlert ile göster
+        var successMessage = '@(TempData["SuccessMessage"] ?? "")';
+        if (successMessage) {
+            swal({
+                title: "İşlem başarılı!",
+                text: successMessage,
+                icon: "success",
+                button: "Tamam",
+            });
+        }
+    });
+</script>

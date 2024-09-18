@@ -1,0 +1,45 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Sınıflar.Faturalar
+
+@{
+    ViewBag.Title = "YeniFatura";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Fatura Sayfası</h2>
+<br />
+
+<form class="form-group" method="post">
+
+    @Html.Label("Seri No")
+    @Html.TextBoxFor(x => x.seriNo, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.seriNo, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Sıra No")
+    @Html.TextBoxFor(x => x.sıraNo, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.sıraNo, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.tarih, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Saat")
+    @Html.TextBoxFor(x => x.saat, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.saat, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Vergi Dairesi")
+    @Html.TextBoxFor(x => x.vergiDairesi, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.vergiDairesi, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Teslim Eden")
+    @Html.TextBoxFor(x => x.teslimEden, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.teslimEden, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Teslim Alan")
+    @Html.TextBoxFor(x => x.teslimAlan, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.teslimAlan, "", new { @class = "text-danger" })
+
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+
+</form>

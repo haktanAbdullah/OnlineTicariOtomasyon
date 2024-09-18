@@ -1,0 +1,38 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Sınıflar.Departman
+@{
+    ViewBag.Title = "DepartmanEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<br />
+<h2>Yeni Departman</h2>
+
+@using (Html.BeginForm("DepartmanEkle", "Departman", FormMethod.Post, new { id = "departmanForm" }))
+{
+    <div>
+        @Html.LabelFor(x => x.ad, "Departman Adı:")
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ad, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div>
+        <button type="submit" id="btn3" class="btn btn-info">Kaydet</button>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        // TempData'dan başarı mesajını al ve SweetAlert ile göster
+        var successMessage = '@(TempData["SuccessMessage"] ?? "")';
+        if (successMessage) {
+            swal({
+                title: "İşlem başarılı!",
+                text: successMessage,
+                icon: "success",
+                button: "Tamam",
+            });
+        }
+    });
+</script>

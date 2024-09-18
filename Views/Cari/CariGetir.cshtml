@@ -1,0 +1,53 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Sınıflar.Cariler
+
+@{
+    ViewBag.Title = "CariGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Cari Güncelleme</h2>
+<br />
+
+@using (Html.BeginForm("CariGuncelle", "Cari", FormMethod.Post))
+{
+    <div class="form-group">
+
+        <input type="hidden" name="urunId" value="@Model.id" />
+
+        @Html.LabelFor(x => x.ad)
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Cari adı giriniz..." })
+        @Html.ValidationMessageFor(x => x.ad, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.soyad)
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Cari Soyadı giriniz..." })
+        @Html.ValidationMessageFor(x => x.soyad, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.sehir)
+        @Html.DropDownListFor(x => x.sehir, new SelectList(ViewBag.sehirler as List<string>), "Şehir seçiniz", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.sehir, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.mail)
+        @Html.TextBoxFor(x => x.mail, new { @class = "form-control", placeholder = "Cari Mail giriniz..." })
+        @Html.ValidationMessageFor(x => x.mail, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.meslek)
+        @Html.TextBoxFor(x => x.meslek, new { @class = "form-control", placeholder = "Cari Mail giriniz..." })
+        @Html.ValidationMessageFor(x => x.meslek, "", new { @style = "color:red" })
+        <br />
+
+        @Html.LabelFor(x => x.telefonNo)
+        @Html.TextBoxFor(x => x.telefonNo, new { @class = "form-control", placeholder = "Cari Mail giriniz..." })
+        @Html.ValidationMessageFor(x => x.telefonNo, "", new { @style = "color:red" })
+        <br />
+
+    </div>
+
+    <button class="btn btn-default" style="background-color:yellowgreen;">Güncelle</button>
+}
+<br />
+
